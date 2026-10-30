@@ -19,6 +19,10 @@ exe 时资源管理器默认工作目录就是 exe 所在目录，行为一致�
 
 import sys
 
+if "--character-studio" in sys.argv or "--studio-worker" in sys.argv:
+    from pet.character_studio.app import main as studio_main
+    sys.exit(studio_main())
+
 # 同 pet/__main__：Qt 插件路径消毒必须最早（issue #323）
 from pet.qt_plugin_sanitizer import sanitize_plugin_path as _sanitize_plugin_path
 

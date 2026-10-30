@@ -24,6 +24,8 @@
 
 | 文档 | 一句话内容 | 何时必读 |
 |---|---|---|
+| [`DAHLIA-PET.md`](DAHLIA-PET.md) | Dahlia Pet 本地角色工坊：固定英文提示词、十动作、自动抠图、角色包分享和独立分发。 | 使用或修改 `pet/character_studio/`、制作自定义角色或构建 Dahlia Pet 时必读。 |
+| [`DAHLIA-PET-VALIDATION.md`](DAHLIA-PET-VALIDATION.md) | Windows 本机测试、真实素材处理和冻结版验证记录。 | 引用 Dahlia Pet 测试结果、排查打包依赖或准备分发时必读。 |
 | [`PACK-PUBLISHING.md`](PACK-PUBLISHING.md) | **素材包发布指南（给素材制作者）**：帧序列产出（convert_frameseq）→ 打包 + 发布门（build_character_pack）→ 上架两动作（zip 传 Release + packs-index.json 提交 main）→ 自验清单；含版本号/app_min/变体规则、发布门报错对照表、千万别做的事。 | 发任何素材包（标清/高清/变体/新角色）之前必读；发布门报错先查 §6 对照表。 |
 | [`PR-REPORT-ASSET-ARCH-LOSSLESS-2026-10-19.md`](PR-REPORT-ASSET-ARCH-LOSSLESS-2026-10-19.md) | **素材与播放架构改造（v6 无损档）**：白点根因 = 有损编码（消融 37.2→8.6/帧，源 15.9），糊根因 = 源 640×360 放大显示；改为无损 WebP（`lossless=True, exact=True, method=2`）后位精确、CPU 反而从 85.8% 降到 67.6%（8 宠进程树），素材 425→1327 MB。同批修：失败帧整段作废、播放边界才换后端、`character.json` 无源资源契约、分包 Range 续传、真机验收链路。**未完成项见报告 §五**。 | 改帧序列编码档/采纳闸门/`movie()` 后端选择/角色包索引/帧序列目录结构时必读；再遇「素材糊/闪白点」「生成完了不生效」「没有 webm 就建不了库」时先看本报告的根因与口径。 |
 | [`PRODUCT-STATUS-2026-10-09.md`](PRODUCT-STATUS-2026-10-09.md) | 2026-10-11 当前状态快照：分开源码、候选包、实机证据与待验证项，包含 issues/PR 适用性分类。 | 恢复工作或引用最新进度前必读；先核对证据的源码范围和包摘要，不能把旧全量或局部测试当作当前三端通过。 |

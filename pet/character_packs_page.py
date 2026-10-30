@@ -847,6 +847,23 @@ def build_content(dialog=None) -> QWidget:
     layout.setContentsMargins(0, 0, 0, 0)
     layout.setSpacing(18)
 
+    from PySide6.QtCore import QProcess
+    from .character_studio.app import command as studio_command
+    from .context_menus.icons import vector_widget_icon
+
+    create = QPushButton("创建自己的桌宠")
+    create.setIcon(vector_widget_icon(create, "add"))
+    create.setToolTip("打开角色工坊")
+
+    def _open_creator():
+        program, arguments = studio_command()
+        ok, _pid = QProcess.startDetached(program, arguments)
+        if not ok:
+            create.setText("工坊启动失败，请检查安装")
+
+    create.clicked.connect(_open_creator)
+    layout.addWidget(create)
+
     def _installed_section() -> SettingsSection:
         packs = installed_packs()
         if packs:

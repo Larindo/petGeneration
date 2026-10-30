@@ -5,6 +5,11 @@ from pathlib import Path
 from .models import ChatMessage, ChatSettings
 
 def load_character_manifest(root:Path,character_id:str):
+    from .. import catalog, config
+    # Runtime chat windows supply the bundled root; Studio installs into user data.
+    if (config.APP_DIR_NAME == 'dahlia-pet'
+            and Path(root).resolve() == Path(__file__).resolve().parents[2] / 'assets' / 'characters'):
+        root = catalog.user_characters_dir()
     try: raw=json.loads((Path(root)/character_id/'manifest.json').read_text(encoding='utf-8'))
     except (OSError,ValueError): return {}
     return raw if isinstance(raw,dict) else {}

@@ -4209,6 +4209,11 @@ class AppShell:
 
     # ------------------------------------------------------------ 更新
     def check_update(self, parent=None) -> None:
+        if APP_DIR_NAME == "dahlia-pet":
+            target = parent or (self.instance.win if self.instance is not None else None)
+            if target is not None:
+                target.show_bubble("Dahlia Pet 请使用项目发布的新版安装包。", duration_ms=6000)
+            return
         # 重入防护（审查 GLM-L3）：连点不应起多个检查线程/叠气泡
         if getattr(self, "_update_checking", False):
             return
@@ -5136,7 +5141,7 @@ class AppShell:
         menu.addAction('退出', self.request_app_quit)
 
         tray.setContextMenu(menu)
-        tray.setToolTip('dsh-pet 独立桌宠')
+        tray.setToolTip('Dahlia Pet' if APP_DIR_NAME == "dahlia-pet" else 'dsh-pet 独立桌宠')
         tray.show()
         # F5：菜单已由新菜单接管后，显式记录所有权并释放被替换的旧菜单
         #（owner 生命周期：强引用保活到替换，旧菜单延迟销毁防泄漏）。

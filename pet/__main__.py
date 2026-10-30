@@ -156,6 +156,9 @@ def _run_ocr_worker() -> int:
 
 
 def _main() -> int:
+    if "--character-studio" in sys.argv or "--studio-worker" in sys.argv:
+        from .character_studio.app import main as studio_main
+        return studio_main()
     # 卸载清理走无 GUI 路径：不导入 pet.app（避免拉起 QApplication/事件循环），
     # 并与两个冻结入口共用 pet.uninstall_cleanup.main——逐步诊断输出、配置目录留痕、
     # 退出码语义只有那一处实现，入口侧不再自己复刻一份。

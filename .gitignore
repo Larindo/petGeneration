@@ -87,3 +87,8 @@ dist-android/
 
 # 素材包构建产物（发布门输出，发布到 Release 后即可删）
 dist-packs/
+dist-dahlia/
+.venv/
+
+# Personal character assets stay local; share explicit exported packs separately.
+/assets/characters/gugugaga/

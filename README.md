@@ -1,4 +1,10 @@
-# dsh-pet-indesktop
+# petGeneration · 桌宠孵化基地
+
+基于 [dsh-pet-indesktop](https://github.com/MerZlin/dsh-pet-indesktop) 开发的桌宠创建工具，程序内部名称为 Dahlia Pet。本项目仓库：[Larindo/petGeneration](https://github.com/Larindo/petGeneration)。
+
+角色工坊提供固定英文提示词、十种动作模板、本地自动抠图、角色包导入导出。使用方法和独立 Windows 便携版构建见 [Dahlia Pet 文档](docs/DAHLIA-PET.md)。
+
+源码启动：安装 Python 3.11+，克隆本仓库后先运行 `Setup-DahliaPet.ps1`，再运行 `Start-DahliaPet.ps1`。个人角色、API Key、聊天记录和本地构建产物不随源码上传。下方保留上游项目说明与署名；其中下载与更新链接属于上游项目，不是 Dahlia Pet 发行地址。
 
 <p align="center">
   <a href="https://github.com/MerZlin/dsh-pet-indesktop/releases"><img alt="版本" src="https://img.shields.io/github/v/release/MerZlin/dsh-pet-indesktop?label=%E7%89%88%E6%9C%AC&color=blue"></a>

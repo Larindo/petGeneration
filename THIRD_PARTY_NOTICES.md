@@ -49,11 +49,23 @@ SOFTWARE.
 
 ## 2. Character Animation Assets（深深 / 小鲸鱼 webm 素材）
 
-- **Files**: `assets/characters/**`（640×360 / 24fps / VP9-alpha 透明 webm）
+- **Files**: `assets/characters/shenshen/**`（640×360 / 24fps / VP9-alpha 透明 webm）
 - **Origin / Source Repository**: [PC2005-cloud/dsh-pet](https://github.com/PC2005-cloud/dsh-pet)（动作素材做法与素材来源；本项目经整理搬运）
 - **Notes**: 角色 OC「溟月」出自画师上善无形，素材由社区成员整理制作。
   此类同人素材按 CC BY-NC-SA 类条款发布，**仅限个人非商业使用**，
   使用须保留署名与来源，不得用于任何商业/盈利场景。
+
+### Local custom character: gugugaga
+
+- **Files**: `assets/characters/gugugaga/**`.
+- **Source**: user-supplied `G:\gugugaga\huishou.mp4`; the video metadata
+  identifies an AI-generated clip (KLingMuse).
+- **Processing**: local foreground segmentation and conversion to transparent
+  640x360 / 24 fps VP9 WebM on 2026-10-27.
+- **Scope**: local installation only; no publication or Git push.
+  Artwork rights and redistribution permission were not supplied. This
+  artwork is not covered by the software's MIT license or the shenshen
+  attribution above. Details are retained in the character's `SOURCE.txt`.
 
 ---
 
@@ -321,6 +333,13 @@ headless，本机两个发行名同版本并存、都提供 `cv2` 顶层模块�
 - **License / 权利口径**：simple-icons 的图标路径数据按 CC0 分发；**"DeepSeek"
   名称与鲸鱼标识的商标权归深度求索（DeepSeek）所有**——本项目是其桌面宠物衍生
   作品，按品牌本意作指示性使用（不代表官方出品/背书）。
+
+## Dahlia Pet 本地角色工坊依赖
+
+- 抠图使用 rembg（本地版本锁定于 `requirements-studio.txt`）及 U2Net ONNX 模型；模型来自 rembg 的模型分发源。便携构建可显式加入模型。
+- 本地推理和图像处理使用 ONNX Runtime、NumPy、SciPy、OpenCV 与 Pillow；视频编码沿用 imageio-ffmpeg 分发的 FFmpeg。
+- 工坊生成的角色包只包含用户提供的角色素材和派生文件，不自动继承本项目软件许可证作为素材授权。
+- Dahlia Pet 构建不分发 shenshen 或个人 gugugaga 角色，也不包含个人配置、API Key 或聊天记录。原项目署名及本文件继续保留。
 
 ## 9. Android 客户端与构建工具
 

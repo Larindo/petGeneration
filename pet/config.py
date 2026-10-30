@@ -533,6 +533,8 @@ def _app_dir_name() -> str:
     packaging/build_variant.py（VARIANT = "webm-chat" 等），
     使 Chat / 无 Chat 等变体各自使用独立的配置目录、会话与自启项。
     """
+    if os.environ.get("DAHLIA_PET") == "1":
+        return "dahlia-pet"
     try:
         from build_variant import VARIANT  # 仅打包产物中存在
 
@@ -1123,8 +1125,8 @@ class Config:
             "self_talk_image_scale": 100,  # 气泡配图显示尺寸百分比（50~300，100 = 默认）
             "self_talk_image_chance": DEFAULT_SELF_TALK_IMAGE_CHANCE,  # 出图概率百分比（0~100）
             "bubble_text_scale": 100,  # 气泡文字显示尺寸百分比（50~300，100 = 默认；气泡与字号一起放大）
-            "self_talk_texts": list(DEFAULT_SELF_TALK_TEXTS),
-            "self_talk_image_dir": "assets/big_blue_fat_fish",
+            "self_talk_texts": ["你好呀~", "陪你一会儿~"] if APP_DIR_NAME == "dahlia-pet" else list(DEFAULT_SELF_TALK_TEXTS),
+            "self_talk_image_dir": "" if APP_DIR_NAME == "dahlia-pet" else "assets/big_blue_fat_fish",
             "self_talk_bubble_style": DEFAULT_SELF_TALK_BUBBLE_STYLE,
             # Existing event wording: legacy is deliberately the default.
             "dialogue_mode": "legacy",
@@ -1377,6 +1379,8 @@ class Config:
         """旧版各变体共用 %APPDATA%/dsh-pet-standalone；升级后首次运行时
         把该目录的 config.json 与 sessions/ 一次性复制到变体独立目录，
         避免用户设置与聊天会话“消失”。仅在新目录尚不存在时执行。"""
+        if APP_DIR_NAME == "dahlia-pet":
+            return
         if self.instance_id:
             return  # 多开实例不参与旧版迁移，避免把单开配置复制给每个实例
         if APP_DIR_NAME == "dsh-pet-standalone" or self.path.exists():

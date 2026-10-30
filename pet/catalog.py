@@ -220,7 +220,7 @@ def external_character_dirs() -> list[Path]:
     app_dir_name = getattr(_config, 'APP_DIR_NAME', 'dsh-pet-standalone')
     dirs.extend(_data_character_dirs(app_dir_name))
     # 非变体旧目录兜底：老用户已放入的角色不能因为变体拆分而丢
-    if app_dir_name != 'dsh-pet-standalone':
+    if app_dir_name not in ('dsh-pet-standalone', 'dahlia-pet'):
         dirs.extend(_data_character_dirs('dsh-pet-standalone'))
     return dirs
 
@@ -388,7 +388,8 @@ def list_available_characters() -> list[str]:
 
     外部目录不存在时静默跳过，不会报错。
     """
-    ids: list[str] = list(CHARACTERS)
+    from .config import APP_DIR_NAME
+    ids: list[str] = [] if APP_DIR_NAME == "dahlia-pet" else list(CHARACTERS)
     seen = set(ids)
     for root in external_character_dirs():
         if not root.is_dir():
